@@ -19,7 +19,7 @@ Just in case you are serious about finding a key for a Bitcoin address with posi
 
 **If Bitcoin Private Keys are truly random**, then doing a thorough search for a particular part is better than guessing randomly. Eg. currently, there are ~8x10^6 Bitcoin addresses with 0.005BTC or more; so we should divide 10^77 into 8x10^6 parts, each part has 125x10^68 numbers; then we should search for the part near 10^77/2 first. 125x10^68 is still a big number, but maybe it is better than making randomly guess.
 
-**Use GPU for calculation.** GPU could work much faster for this kind of task, but
+**Use GPU for calculation.** GPU may work much faster for this kind of task, but this program need to be rewritten in [C, C++, Fortran or Python](https://developer.nvidia.com/how-to-cuda-c-cpp). [Java could do the work](http://www.jcuda.org/), but I doubt if it is a good choice.
 
 ## Usage
 
