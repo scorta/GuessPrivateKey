@@ -13,7 +13,7 @@ But if you are an extremely lucky person, or you have some quantum computers at 
 
 Just in case you are serious about finding a key for a Bitcoin address with positive balance, you may want to try **[Large Bitcoin Collider](https://lbc.cryptoguru.org/about)**
 
-[There was much more efficient way to find a Private Key](https://www.deepdotweb.com/2017/06/09/bitcoin-brain-wallets-hackers-heaven/), but I am afraid that hackers have done long before.
+[And there was much more efficient way to find a Private Key](https://www.deepdotweb.com/2017/06/09/bitcoin-brain-wallets-hackers-heaven/), but I am afraid that hackers have done long before.
 
 ## Room for improvement
 
