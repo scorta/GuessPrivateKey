@@ -17,7 +17,7 @@ Just in case you are serious about finding a key for a Bitcoin address with posi
 
 ## Room for improvement
 
-**If Bitcoin Private Keys are truly random**, then doing a thorough search for a particular part is better than guessing randomly. Eg. currently, there are ~8x10^6 Bitcoin addresses with 0.005BTC or more; so we should divide 10^77 into 8x10^6 parts, each part has 125x10^68 numbers; then we should search for the part near 10^77/2 first. 125x10^68 is still a big number, but maybe it is better than making randomly guess.
+**If Bitcoin Private Keys are truly random**, then doing a thorough search for a particular part is better than guessing randomly. Eg. currently, there are ~8x10^6 Bitcoin addresses with 0.005BTC or more; so we should divide 10^77 into 8x10^6 parts, each part has 125x10^68 numbers; then we should search for the part near 10^77/2 first. 125x10^68 is still a big number, but maybe it is better than making randomly guess. **UPDATE: done!**
 
 **Use GPU for calculation.** GPU may work much faster for this kind of task, but this program need to be rewritten in [C, C++, Fortran or Python](https://developer.nvidia.com/how-to-cuda-c-cpp). [Java could do the work](http://www.jcuda.org/), but I doubt if it is a good choice.
 
@@ -25,11 +25,23 @@ Just in case you are serious about finding a key for a Bitcoin address with posi
 
 Install java on your computer, download the **[GuessPrivateKey.jar](https://github.com/scorta/GuessPrivateKey/releases/tag/0.1)** file, then enter this command
 
-    java -jar <this_program> <numbers of threads> <file_contains_bitcoin_addresses>    
-Eg.
+`java -jar <this_program> <numbers of threads> <file_contains_bitcoin_addresses> <choice> <start_from>`
 
-    java -jar GuessPrivateKey.jar 7 bit.txt
-It will run with 7 threads, and searching key(s) for list of Bitcoin address(es) in the file `bit.txt`. `<Number of threads>` should be equal to your CPU cores (or less, if you want to use it for other tasks). Eg. my CPU has 8 cores, so I set `<Number of threads>` to 7 or 8.
+`<numbers of threads>`: number of threads, should be equal to your CPU cores (or less, if you want to use it for other tasks). Eg. my CPU has 8 cores, so I set `<Number of threads>` to 7 or 8.
+
+`<choice>`: 0 means guessing keys randomly; while non-zero means sequential check, starting from `<start_from>`. Default value is 0.
+
+`<start_from>`: if you do not specify `<start_from>`, then the program will check from 0.
+
+Eg.
+`java -jar GuessPrivateKey.jar 7 bit.txt`
+
+Running with 7 threads, and searching key(s) randomly for list of Bitcoin address(es) in the file `bit.txt`.
+
+Eg.
+`java -jar GuessPrivateKey.jar 8 bit.txt 1 666`
+
+Running with 8 threads, and searching key(s) sequentially for list of Bitcoin address(es) in the file `bit.txt`.
 
 ### Compile yourself?
 
