@@ -41,7 +41,7 @@ Running with 7 threads, and searching key(s) randomly for list of Bitcoin addres
 Eg.
 `java -jar GuessPrivateKey.jar 8 bit.txt 1 666`
 
-Running with 8 threads, and searching key(s) sequentially for list of Bitcoin address(es) in the file `bit.txt`.
+Running with 8 threads, and searching key(s) sequentially (starting from 666) for list of Bitcoin address(es) in the file `bit.txt`.
 
 ### Compile yourself?
 
