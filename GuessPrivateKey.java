@@ -9,7 +9,7 @@ import java.util.HashSet;
 
 public class GuessPrivateKey{
     public static void main(String[] args){
-        if(args.length < 2 && args.length > 4){
+        if(args.length < 2 || args.length > 4){
             System.out.println("Wrong arguments. Please see instruction at https://github.com/scorta/GuessPrivateKey");
         } else {
             int nThread = Integer.parseInt(args[0]);
@@ -72,7 +72,7 @@ class GuessKeyThread extends Thread {
                 System.out.println("Start importing list Bitcoin address(es)");
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 for (String line; (line = br.readLine()) != null; ) {
-                    bitAddress.add(line);
+                    bitAddress.add(line.split(";")[0]);
                 }
                 System.out.println("Imported " + bitAddress.size() + " " + "address(es). Start searching...");
             } catch (Exception e) {
