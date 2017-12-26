@@ -1,5 +1,6 @@
 import org.bitcoinj.core.*;
 import org.bitcoinj.params.MainNetParams;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,10 +15,10 @@ public class GuessPrivateKey{
         } else {
             int nThread = Integer.parseInt(args[0]);
             String fileName = args[1];
-            int choice = 0;
+            GuessKeyThread.CHOICE choice = GuessKeyThread.CHOICE.random;
             String start = "0";
-            if (args.length == 3) {
-                choice = Integer.parseInt(args[2]);
+            if (args.length >= 3) {
+                choice = GuessKeyThread.CHOICE.valueOf(args[2]);
             }
             if(args.length == 4){
                 start = args[3];
@@ -30,7 +31,7 @@ public class GuessPrivateKey{
             GuessKeyThread.choice = choice;
 
             for (int i = 0; i < nThread; ++i) {
-                if(choice == 0){
+                if(choice == GuessKeyThread.CHOICE.random){
                     guessKeyThreads[i] = new GuessKeyThread();
                     guessKeyThreads[i].start();
                 } else {
@@ -44,8 +45,9 @@ public class GuessPrivateKey{
 }
 
 class GuessKeyThread extends Thread {
+    public enum CHOICE {random, up, down};
     public static int step;
-    public static int choice;
+    public static CHOICE choice;
 
     private static HashSet<String> bitAddress = new HashSet<>();
     private static NetworkParameters netParams = MainNetParams.get();
@@ -59,10 +61,13 @@ class GuessKeyThread extends Thread {
     GuessKeyThread(){}
 
     public void run(){
-        if(choice == 0) {
+        System.out.println("Run in \"" + choice + "\" mode, checking from: " + start);
+        if(choice == CHOICE.random) {
             searchForKey();
+        } else if(choice == CHOICE.up) {
+            searchForKeyInRangeUpper();
         } else {
-            searchForKeyInRange();
+            searchForKeyInRangeLower();
         }
     }
 
@@ -74,7 +79,7 @@ class GuessKeyThread extends Thread {
                 for (String line; (line = br.readLine()) != null; ) {
                     bitAddress.add(line.split(";")[0]);
                 }
-                System.out.println("Imported " + bitAddress.size() + " " + "address(es). Start searching...");
+                System.out.println("Imported " + bitAddress.size() + " " + "address(es)");
             } catch (Exception e) {
                 System.out.println("Error at importing list Bitcoin Address. Error: " + e.toString());
             }
@@ -125,9 +130,17 @@ class GuessKeyThread extends Thread {
         }
     }
 
-    private void searchForKeyInRange(){
+    private void searchForKeyInRangeUpper(){
         ECKey key;
         for(BigInteger bigIntKey = start;; bigIntKey = bigIntKey.add(BigInteger.valueOf(step))){
+            key = ECKey.fromPrivate(bigIntKey);
+            checkKey(key);
+        }
+    }
+
+    private void searchForKeyInRangeLower(){
+        ECKey key;
+        for(BigInteger bigIntKey = start;; bigIntKey = bigIntKey.subtract(BigInteger.valueOf(step))){
             key = ECKey.fromPrivate(bigIntKey);
             checkKey(key);
         }
