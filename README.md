@@ -29,7 +29,7 @@ Install java on your computer, download the **[GuessPrivateKey.jar](https://gith
 
 `<numbers of threads>`: number of threads, should be equal to your CPU cores (or less, if you want to use it for other tasks). Eg. my CPU has 8 cores, so I set `<Number of threads>` to 7 or 8.
 
-`<choice>`: `random` means guessing keys randomly; `up` means checking for `<start_from>` and bigger number. `down` means otherwise.
+`<choice>`: `random` means guessing keys randomly; `up` means checking for `<start_from>` and upper. `down` means going down from `<start_from>`.
 
 `<start_from>`. Starting number. Default value is 0.
 
@@ -41,7 +41,7 @@ Running with 7 threads, and searching key(s) randomly for list of Bitcoin addres
 Eg.
 `java -jar GuessPrivateKey.jar 8 bit.txt up 666`
 
-Running with 8 threads, and searching key(s) sequentially (starting from 666) for list of Bitcoin address(es) in the file `bit.txt`.
+Running with 8 threads, and searching key(s) sequentially (starting from 666 and upper) for list of Bitcoin address(es) in the file `bit.txt`.
 
 If you have a big list of Bitcoin addresses (like, millions), you may need to use the `-Xmx` option.
 
