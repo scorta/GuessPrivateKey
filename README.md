@@ -7,7 +7,7 @@ This program generates random Bitcoin Private Key, then check if it is the key f
 
 A Bitcoin Private Key is an integer between 1 and ~10^77, so to *find* a Private Key for a given address, we *just* need to generate a number in that range, and check if it is the key for that address. Sounds easy, right?
 
-But the problem is, 10&77 is a big number. A really really big number (to compare, the total number of atoms in observable universe is about 10^82). If you are able to check a quintillion key (10^18) per second, you still need '3'170'979'198'376'458'650'431'253'170'979'198'376'458'650'431'253'170 years to check all the possible Bitcoin keys. FYI, my CPU (Xeon E3 1231 v3) is able to check ~20000 keys/second (= 2 * 10^4).
+But the problem is, 10&77 is a big number. A really really big number (to compare, the total number of atoms in observable universe is about 10^82). If you are able to check a quintillion key (10^18) per second, you still need '3'170'979'198'376'458'650'431'253'170'979'198'376'458'650'431'253'170 years to check all the possible Bitcoin keys.
 
 But if you are an extremely lucky person, or you have some quantum computers at home, then you could try.
 
