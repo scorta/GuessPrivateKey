@@ -5,9 +5,9 @@ This program searches Private Key(s) for given Bitcoin address(es)
 
 This program generates random Bitcoin Private Key, then check if it is the key for given address(es).
 
-A Bitcoin Private Key is an integer between 0 and 2^256, so to *find* a Private Key for a given address, we *just* need to generate a number between 0 and 2^256, and check if it is the key for that address. Sounds easy, right?
+A Bitcoin Private Key is an integer between 1 and ~10^77, so to *find* a Private Key for a given address, we *just* need to generate a number in that range, and check if it is the key for that address. Sounds easy, right?
 
-But the problem is, 2^256 is a big number. A really really big number (to compare, the total number of atoms in observable universe is about 10^82 = 86361 * 2^256). If you are able to check a quintillion key (10^18) per second, you still need 3'671'743'063'080'802'746'815'416'825'491'118'336'290'905'145'409'708 years to check all the possible Bitcoin keys. FYI, my CPU (Xeon E3 1231 v3) is able to check ~20000 keys/second (= 2 * 10^4).
+But the problem is, 10&77 is a big number. A really really big number (to compare, the total number of atoms in observable universe is about 10^82). If you are able to check a quintillion key (10^18) per second, you still need '3'170'979'198'376'458'650'431'253'170'979'198'376'458'650'431'253'170 years to check all the possible Bitcoin keys. FYI, my CPU (Xeon E3 1231 v3) is able to check ~20000 keys/second (= 2 * 10^4).
 
 But if you are an extremely lucky person, or you have some quantum computers at home, then you could try.
 
@@ -17,7 +17,7 @@ Just in case you are serious about finding a key for a Bitcoin address with posi
 
 ## Room for improvement
 
-**If Bitcoin Private Keys are truly random**, then doing a thorough search for a particular part is better than guessing randomly. Eg. currently, there are ~8x10^6 Bitcoin addresses with 0.005BTC or more; so we should divide 2^256 into 8x10^6 parts, each part has ~125x10^68 numbers; then we should search for the part near (2^128 + 2^256)/2 first (most wallet generates keys in this range). 125x10^68 is still a big number, but maybe it is better than making randomly guess. **UPDATE: done!**
+**If Bitcoin Private Keys are truly random**, then doing a thorough search for a particular part is better than guessing randomly. **UPDATE: done!**
 
 **Use GPU for calculation.** GPU may work much faster for this kind of task, but this program need to be rewritten in [C, C++, Fortran or Python](https://developer.nvidia.com/how-to-cuda-c-cpp). [Java could do the work](http://www.jcuda.org/), but I doubt if it is a good choice.
 
@@ -29,9 +29,9 @@ Install java on your computer, download the **[GuessPrivateKey.jar](https://gith
 
 `<numbers of threads>`: number of threads, should be equal to your CPU cores (or less, if you want to use it for other tasks). Eg. my CPU has 8 cores, so I set `<Number of threads>` to 7 or 8.
 
-`<choice>`: 0 means guessing keys randomly; while non-zero means sequential check, starting from `<start_from>`. Default value is 0.
+`<choice>`: `random` means guessing keys randomly; `up` means checking for `<start_from>` and bigger number. `down` means otherwise.
 
-`<start_from>`: if you do not specify `<start_from>`, then the program will check from 0.
+`<start_from>`. Starting number. Default value is 0.
 
 Eg.
 `java -jar GuessPrivateKey.jar 7 bit.txt`
@@ -39,7 +39,7 @@ Eg.
 Running with 7 threads, and searching key(s) randomly for list of Bitcoin address(es) in the file `bit.txt`.
 
 Eg.
-`java -jar GuessPrivateKey.jar 8 bit.txt 1 666`
+`java -jar GuessPrivateKey.jar 8 bit.txt up 666`
 
 Running with 8 threads, and searching key(s) sequentially (starting from 666) for list of Bitcoin address(es) in the file `bit.txt`.
 
