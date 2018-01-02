@@ -48,3 +48,13 @@ If you have a big list of Bitcoin addresses (like, millions), you may need to us
 ### Compile yourself?
 
 This program uses [bitcoinj](https://bitcoinj.github.io/) library, so please remember to include it.
+
+### Tip?
+
+BTC: 169HJrugesvXG4K7CHmoTqGruY6pKEaMWW
+
+ETH: 0x573c8408d1b5a1fdec8f2bbfe206cd954977cbdd
+
+LTC: LhYQgMpRtY3zGJAvFwmGa5oKMedYmHA7eW
+
+Thank you so much :)
