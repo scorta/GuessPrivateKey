@@ -45,6 +45,16 @@ Running with 8 threads, and searching key(s) sequentially (starting from 666 and
 
 If you have a big list of Bitcoin addresses (like, millions), you may need to use the `-Xmx` option.
 
+## Harmless Error
+
+The program may give you the following error:
+
+```
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+```
+**Do not worry!** It is just an harmless error from the library bitcoinj. The program will still run fine.
 ### Compile yourself?
 
 This program uses [bitcoinj](https://bitcoinj.github.io/) library, so please remember to include it.
