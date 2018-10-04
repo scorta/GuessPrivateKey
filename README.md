@@ -55,11 +55,12 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ```
 **Do not worry!** It is just an harmless error from the library bitcoinj. The program will still run fine.
-### Compile yourself?
+
+## Compile yourself?
 
 This program uses [bitcoinj](https://bitcoinj.github.io/) library, so please remember to include it.
 
-### Tip?
+## Tip?
 
 BTC: 169HJrugesvXG4K7CHmoTqGruY6pKEaMWW
 
