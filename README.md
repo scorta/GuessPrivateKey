@@ -45,6 +45,20 @@ Running with 8 threads, and searching key(s) sequentially (starting from 666 and
 
 If you have a big list of Bitcoin addresses (like, millions), you may need to use the `-Xmx` option.
 
+## Output
+
+If found a key, the program will display a message (**"Found a key!!!"**), and print info to a file, which has the same name to that WIF key.
+
+Eg. if it found the key **"L59eMgqKqxCGXrDWhGwVBZbQBra482LRLzyAj6g5CGKdq6ABCvXz"**, it will create a file name **"L59eMgqKqxCGXrDWhGwVBZbQBra482LRLzyAj6g5CGKdq6ABCvXz.txt"** and write these info into it:
+````
+1zJBmcSDHZ97Sjm6TmtM5M7ZdPzuiBABm //address
+L59eMgqKqxCGXrDWhGwVBZbQBra482LRLzyAj6g5CGKdq6ABCvXz //key in WIF format
+EC9B83954E3E5001E34B02A1705779D2B59264BB54784815B3AA3EBC10C622F0 //key in HEX format
+````
+So if you find a new .txt file in the same folder with this program, you have found a wallet!
+
+Note: if it cannot create file(s), it will print these info directly into the screen.
+
 ## Harmless Error
 
 The program may give you the following error:
