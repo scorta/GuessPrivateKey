@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Why play lottery when you can try guessing Bitcoin private keys?</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans" rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51333035-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-51333035-2');
+  </script>
+
+</head>
+
+<body>
+  <div id="outer">
+    <div id="content">
+      <h1>Guess (Bitcoin) Private Key</h1>
+      <h5>This program searches Private Key(s) for given Bitcoin address(es)</h5>
+
+      <div class="section">
+        <div class="header">
+          HOW DOES IT DO?
+        </div>
+        <div class="row">
+          <div class="column_value">
+            <p>This program generates random Bitcoin Private Key, then check if it is the key for given address(es).</p>
+            <p>A Bitcoin Private Key is an integer between 1 and ~10<sup>77</sup>, so to <strong>find</strong> a
+              Private Key for a given address, we <strong>just</strong> need to generate a number in that range, and
+              check if it is the key for that address. Sounds easy, right?</p>
+            <p>But the problem is, 10<sup>77</sup> is a big number. A really really big number (to compare, the total
+              number of atoms in observable universe is about 10<sup>82</sup>). If you are able to check a quintillion
+              key (10<sup>18</sup>) per second, you still need 3 170 979 198 376 458 650 431 253 170 979 198 376 458
+              650 431 253 170 years to check all the possible Bitcoin keys.</p>
+            <p>But if you are an extremely lucky person, or you have some quantum computers at home, then you could
+              try.</p>
+            <p>Just in case you are serious about finding a key for a Bitcoin address with positive balance, you may
+              want to try <a href="https://lbc.cryptoguru.org/about">Large Bitcoin Collider</a></p>
+            <p><a href="https://www.deepdotweb.com/2017/06/09/bitcoin-brain-wallets-hackers-heaven/">And there was much
+                more efficient way to find a Private Key</a>, but I am afraid that hackers have done long before.</p>
+          </div>
+        </div>
+        <div class="footer"></div>
+      </div>
+
+      <div class="section">
+        <div class="header">
+          ROOM FOR IMPROVEMENT
+        </div>
+        <div class="row">
+          <div class="column_value">
+            <p><strong>If Bitcoin Private Keys are truly random</strong>, then doing a thorough search for a particular
+              part is better
+              than guessing randomly. UPDATE: Done. Please check the usage.</p>
+            <p><a href="https://developer.nvidia.com/how-to-cuda-c-cpp">Use GPU for calculation</a>. GPU may work much
+              faster for this kind of task, but this program need to be rewritten in C, C++, Fortran or Python. Java
+              could do the work, but I doubt if it is a good choice.</p>
+          </div>
+        </div>
+        <div class="footer"></div>
+      </div>
+
+      <div class="section">
+        <div class="header">
+          USAGE
+        </div>
+        <div class="row">
+          <div class="column_value">
+            <p>Install java on your computer, download the <a href="https://github.com/scorta/GuessPrivateKey/releases/tag/0.1">GuessPrivateKey.jar</a>
+              file, then enter this command:</p>
+            <p><code>java -jar {this_program} {numbers of threads} {file_contains_bitcoin_addresses} {choice} {start_from}</code></p>
+            <p><code>{numbers of threads}</code>: number of threads, should be equal to your CPU cores (or less, if you
+              want to use it for other tasks). Eg. my CPU has 8 cores, so I set <code>{Number of threads}</code> to 7
+              or 8.</p>
+            <p><code>{choice}</code>: <code>random</code> means guessing keys randomly; <code>up</code> means
+              checking for <code>{start_from}</code> and upper. <code>down</code> means going down from <code>{start_from}</code>.</p>
+            <p><code>{start_from}</code>: Starting number. Default value is 0.</p>
+            <p>Eg.</p>
+            <p><code>java -jar GuessPrivateKey.jar 7 bit.txt</code></p>
+            <p>Running with 7 threads, and searching key(s) randomly for list of Bitcoin address(es) in the file <code>bit.txt</code>.</p>
+            <p>Eg.</p>
+            <p><code>java -jar GuessPrivateKey.jar 8 bit.txt up 666</code></p>
+            <p>Running with 8 threads, and searching key(s) sequentially (starting from 666 and upper) for list of
+              Bitcoin address(es) in the file <code>bit.txt</code>.</p>
+            <p>If you have a big list of Bitcoin addresses (like, millions), you may need to use the <code>-Xmx</code>
+              option.
+          </div>
+        </div>
+        <div class="footer"></div>
+      </div>
+
+      <div class="section">
+        <div class="header">
+          Output
+        </div>
+        <div class="row">
+          <div class="column_value">
+            <p>If found a key, the program will display a message <strong>"Found a key!!!"</strong>, and print info to
+              a file, which has the same name to that WIF key.</p>
+            <p>Eg. if it found the key <strong>"L59eMgqKqxCGXrDWhGwVBZbQBra482LRLzyAj6g5CGKdq6ABCvXz"</strong>, it will
+              create a file name <strong>"L59eMgqKqxCGXrDWhGwVBZbQBra482LRLzyAj6g5CGKdq6ABCvXz.txt"</strong> and write
+              these info into it:</p>
+            <pre>
+              1zJBmcSDHZ97Sjm6TmtM5M7ZdPzuiBABm //address
+              L59eMgqKqxCGXrDWhGwVBZbQBra482LRLzyAj6g5CGKdq6ABCvXz //key in WIF format
+              EC9B83954E3E5001E34B02A1705779D2B59264BB54784815B3AA3EBC10C622F0 //key in HEX format
+            </pre>
+            <p>So if you find a new .txt file in the same folder with this program, you have found a wallet!</p>
+            <p>Note: if it cannot create file(s), it will print these info directly into the screen.</p>
+          </div>
+        </div>
+        <div class="footer"></div>
+      </div>
+
+      <div class="section">
+        <div class="header">
+          Harmless Error
+        </div>
+        <div class="row">
+          <div class="column_value">
+            <p>The program may give you the following error:</p>
+            <pre>
+                SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+                SLF4J: Defaulting to no-operation (NOP) logger implementation
+                SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+              </pre>
+            <p><strong>Do not worry!</strong> It is just an harmless error from the library bitcoinj. The program will
+              still run fine.</p>
+          </div>
+        </div>
+        <div class="footer"></div>
+      </div>
+
+      <div class="section">
+        <div class="header">
+          Compile yourself?
+        </div>
+        <div class="row">
+          <div class="column_value">
+            <p>This program uses <a href="https://bitcoinj.github.io/">bitcoinj library</a>, so please remember to
+              include it.</p>
+          </div>
+        </div>
+        <div class="footer"></div>
+      </div>
+
+      <div class="section">
+        <div class="header">
+          Tip?
+        </div>
+        <div class="row">
+          <div class="column_value">
+            <p>BTC: 169HJrugesvXG4K7CHmoTqGruY6pKEaMWW</p>
+            <p>ETH: 0x573c8408d1b5a1fdec8f2bbfe206cd954977cbdd</p>
+            <p>LTC: LhYQgMpRtY3zGJAvFwmGa5oKMedYmHA7eW</p>
+            <p>Thank you so much :)</p>
+          </div>
+        </div>
+        <div class="footer"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

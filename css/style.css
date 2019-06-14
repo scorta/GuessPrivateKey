@@ -1,0 +1,89 @@
+h1 {
+  font-family: "Merriweather";
+  margin: auto;
+}
+
+h5 {
+  margin: 0px 10px 10px;
+}
+
+a {
+  color: #008f3d;
+  font-weight: bold;
+}
+
+a:hover {
+  color: yellowgreen;
+}
+
+body {
+  background-color: #8fe88b;
+  color: #008f3d;
+  margin: 0;
+}
+
+#outer {
+  display: flex;
+  flex-flow: column;
+}
+
+#content {
+  background: #f3ffe2;
+  width: 1024px;
+  height: 100%;
+  margin: auto;
+  padding: 0px 30px 30px;
+  font-family: "Open Sans";
+  border-radius: 10px;
+}
+
+.header {
+  width: 100%;
+  background: #008f3d;
+  color: #f3ffe2;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: large;
+}
+
+.row {
+  display: flex;
+  flex-flow: row;
+  padding: 5px 0px 0px;
+}
+
+.column_key {
+  padding: 0px 10px;
+  width: 15%;
+}
+
+.column_value {
+	flex: 75%;
+	padding: 0% 0% 0% 1%;
+}
+
+.small_text {
+  font-size: small;
+}
+
+.detail {
+  padding: 0px 10px;
+}
+
+.footer {
+  width: auto;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  border-radius: 5px;
+  background: #8fe88b;
+}
+
+.inline {
+  padding: 0px 15px;
+  display: inline-block;
+}
+
+.border {
+  border: 2px dashed #046380;
+  border-radius: 5px;
+}
